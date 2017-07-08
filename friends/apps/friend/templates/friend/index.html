@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login and Registration</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'friend/css/style.css' %}">
+    </head>
+    <body>
+        <div class="form-style-3">
+        <form action="/registration" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Registration</legend>
+                <label for="first_name"><span>First Name: <span class="required">*</span></span><input type="text" class="input-field" name="first_name" placeholder="First Name"/></label>
+                <label for="last_name"><span>Last Name: <span class="required">*</span></span><input type="text" class="input-field" name="last_name" placeholder="Last Name"/></label>
+                <label for="email"><span>Email: <span class="required">*</span></span><input type="email" class="input-field" name="email" placeholder="Email"/></label>
+                <label for="password"><span>Password: <span class="required">*</span></span><input type="password" class="input-field" name="password" placeholder="Password"/></label>
+                <label for="confirm_password"><span>Confirm Password: <span class="required">*</span></span><input type="password" class="input-field" name="confirm_password" placeholder="Password"/></label>
+                <label for="birthdate"><span>Date of Birth: <span class="required">*</span></span><input type="date" class="input-field" name="birthdate" placeholder="  /  /    "/></label>
+                <label><span>&nbsp;</span><input type="submit" value="Register" /></label><br>
+            </fieldset>
+        </form>
+        <fieldset>
+            {% if messages %}
+                {% for message in messages %}
+                <p> * {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </fieldset>
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Login</legend>
+                <label for="email"><span>Email: <span class="required">*</span></span><input type="email" class="input-field" name="email" placeholder="Email"/></label>
+                <label for="password"><span>Password: <span class="required">*</span></span><input type="password" class="input-field" name="password" placeholder="Password"/></label>
+                <label><span>&nbsp;</span><input type="submit" value="Login" /></label>
+            </fieldset>
+        </form>
+    </div>
+    </body>
+</html>
